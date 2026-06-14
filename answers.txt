@@ -1,0 +1,76 @@
+Question 1:
+$ curl -s https://api.github.com/repos/nhanhqq/expressBookReviews | grep -E '"fork":|parent'
+  "fork": true,
+  "parent": {
+    "fork": false,
+    "fork": false,
+
+Question 2:
+$ curl -s -X GET http://localhost:5000/
+{
+    "1": { "author": "Chinua Achebe", "title": "Things Fall Apart", "reviews": {} },
+    "2": { "author": "Hans Christian Andersen", "title": "Fairy tales", "reviews": {} },
+    "3": { "author": "Dante Alighieri", "title": "The Divine Comedy", "reviews": {} },
+    "4": { "author": "Unknown", "title": "The Epic Of Gilgamesh", "reviews": {} },
+    "5": { "author": "Unknown", "title": "The Book Of Job", "reviews": {} },
+    "6": { "author": "Unknown", "title": "One Thousand and One Nights", "reviews": {} },
+    "7": { "author": "Unknown", "title": "Njál's Saga", "reviews": {} },
+    "8": { "author": "Jane Austen", "title": "Pride and Prejudice", "reviews": {} },
+    "9": { "author": "Honoré de Balzac", "title": "Le Père Goriot", "reviews": {} },
+    "10": { "author": "Samuel Beckett", "title": "Molloy, Malone Dies, The Unnamable, the trilogy", "reviews": {} }
+}
+
+Question 3:
+$ curl -s -X GET http://localhost:5000/isbn/1
+{
+    "author": "Chinua Achebe",
+    "title": "Things Fall Apart",
+    "reviews": {}
+}
+
+Question 4:
+$ curl -s -X GET http://localhost:5000/author/Jane%20Austen
+{
+    "booksbyauthor": [
+        {
+            "author": "Jane Austen",
+            "title": "Pride and Prejudice",
+            "reviews": {}
+        }
+    ]
+}
+
+Question 5:
+$ curl -s -X GET http://localhost:5000/title/Fairy%20tales
+{
+    "booksbytitle": [
+        {
+            "author": "Hans Christian Andersen",
+            "title": "Fairy tales",
+            "reviews": {}
+        }
+    ]
+}
+
+Question 6:
+$ curl -s -X GET http://localhost:5000/review/1
+{}
+
+Question 7:
+$ curl -s -X POST -H "Content-Type: application/json" -d '{"username":"testuser","password":"testpassword"}' http://localhost:5000/register
+{"message":"Customer successfully registered. Now you can login"}
+
+Question 8:
+$ curl -s -c cookie.txt -X POST -H "Content-Type: application/json" -d '{"username":"testuser","password":"testpassword"}' http://localhost:5000/customer/login
+Customer successfully logged in
+
+Question 9:
+$ curl -s -b cookie.txt -X PUT "http://localhost:5000/customer/auth/review/1?review=GreatBook"
+The review for the book with ISBN 1 has been added/updated.
+
+Question 10:
+$ curl -s -b cookie.txt -X DELETE http://localhost:5000/customer/auth/review/1
+Reviews for the ISBN 1 posted by the user testuser deleted.
+
+Question 11:
+https://github.com/nhanhqq/expressBookReviews/blob/main/final_project/router/general.js
