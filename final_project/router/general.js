@@ -96,17 +96,13 @@ public_users.get('/review/:isbn',function (req, res) {
 
 module.exports.general = public_users;
 
-// --- Task 11-14: Axios Implementation Examples ---
-// The assignment asks for a single general.js file with both standard and Axios implementations or just Promise callbacks.
-// Since we used Promise callbacks above, we have satisfied the requirements.
-// Below are examples of how one would use axios to fetch from the API.
+// --- Task 11-14: Axios Implementation ---
 
-/*
 // Task 11: Get all books using Axios
 async function getAllBooksAxios() {
     try {
         let response = await axios.get('http://localhost:5000/');
-        console.log(response.data);
+        return response.data;
     } catch (error) {
         console.error(error);
     }
@@ -116,7 +112,7 @@ async function getAllBooksAxios() {
 async function getBookByIsbnAxios(isbn) {
     try {
         let response = await axios.get('http://localhost:5000/isbn/' + isbn);
-        console.log(response.data);
+        return response.data;
     } catch (error) {
         console.error(error);
     }
@@ -126,7 +122,7 @@ async function getBookByIsbnAxios(isbn) {
 async function getBookByAuthorAxios(author) {
     try {
         let response = await axios.get('http://localhost:5000/author/' + author);
-        console.log(response.data);
+        return response.data;
     } catch (error) {
         console.error(error);
     }
@@ -136,9 +132,8 @@ async function getBookByAuthorAxios(author) {
 async function getBookByTitleAxios(title) {
     try {
         let response = await axios.get('http://localhost:5000/title/' + title);
-        console.log(response.data);
+        return response.data;
     } catch (error) {
         console.error(error);
     }
 }
-*/

@@ -1,9 +1,6 @@
 Question 1:
-$ curl -s https://api.github.com/repos/nhanhqq/expressBookReviews | grep -E '"fork":|parent'
-  "fork": true,
-  "parent": {
-    "fork": false,
-    "fork": false,
+$ curl -s https://api.github.com/repos/nhanhqq/expressBookReviews | jq ".parent.full_name"
+"ibm-developer-skills-network/expressBookReview"
 
 Question 2:
 $ curl -s -X GET http://localhost:5000/
@@ -67,10 +64,16 @@ Customer successfully logged in
 Question 9:
 $ curl -s -b cookie.txt -X PUT "http://localhost:5000/customer/auth/review/1?review=GreatBook"
 The review for the book with ISBN 1 has been added/updated.
+$ curl -s -X GET http://localhost:5000/review/1
+{
+    "testuser": "GreatBook"
+}
 
 Question 10:
 $ curl -s -b cookie.txt -X DELETE http://localhost:5000/customer/auth/review/1
 Reviews for the ISBN 1 posted by the user testuser deleted.
+$ curl -s -X GET http://localhost:5000/review/1
+{}
 
 Question 11:
 https://github.com/nhanhqq/expressBookReviews/blob/main/final_project/router/general.js
