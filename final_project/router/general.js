@@ -3,7 +3,7 @@ let books = require("./booksdb.js");
 let isValid = require("./auth_users.js").isValid;
 let users = require("./auth_users.js").users;
 const public_users = express.Router();
-const axios = require('axios'); // Task 11 requests Axios
+const axios = require('axios'); // Task 11-14 requests Axios
 
 public_users.post("/register", (req,res) => {
   const username = req.body.username;
@@ -96,72 +96,54 @@ public_users.get('/review/:isbn',function (req, res) {
 
 module.exports.general = public_users;
 
-// --- Task 11-14: Axios Implementation ---
+// ==========================================
+// Task 11: Get all books using Axios
+// ==========================================
+const getAllBooks = async () => {
+  try {
+    const response = await axios.get('http://localhost:5000/');
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-/**
- * Task 11: Write a code to get the book list available in the shop using Promise callbacks or async/await with Axios.
- * This function retrieves all books by making an Axios GET request to the root endpoint.
- * It uses async/await to handle the promise effectively.
- */
-async function getAllBooksAxios() {
-    try {
-        // Fetch all books from the server
-        let response = await axios.get('http://localhost:5000/');
-        console.log("All books retrieved successfully:", response.data);
-        return response.data;
-    } catch (error) {
-        // Handle error if the request fails
-        console.error("Error fetching all books:", error);
-    }
-}
+// ==========================================
+// Task 12: Get book details based on ISBN using Axios
+// ==========================================
+const getBookByISBN = async (isbn) => {
+  try {
+    const response = await axios.get('http://localhost:5000/isbn/' + isbn);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-/**
- * Task 12: Write a code to get the book details based on ISBN using Promise callbacks or async/await with Axios.
- * This function retrieves a specific book by making an Axios GET request to the ISBN endpoint.
- * Proper error handling is implemented to catch and log any issues.
- */
-async function getBookByIsbnAxios(isbn) {
-    try {
-        // Fetch book details for the given ISBN
-        let response = await axios.get('http://localhost:5000/isbn/' + isbn);
-        console.log("Book details retrieved successfully by ISBN:", response.data);
-        return response.data;
-    } catch (error) {
-        // Handle error if the book is not found or request fails
-        console.error("Error fetching book by ISBN:", error);
-    }
-}
+// ==========================================
+// Task 13: Get book details based on author using Axios
+// ==========================================
+const getBookByAuthor = async (author) => {
+  try {
+    const response = await axios.get('http://localhost:5000/author/' + author);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-/**
- * Task 13: Write a code to get the book details based on author using Promise callbacks or async/await with Axios.
- * This function handles the author parameter, filtering the book data by author via the API.
- * Uses try/catch blocks for robustness.
- */
-async function getBookByAuthorAxios(author) {
-    try {
-        // Fetch book details for the specified author
-        let response = await axios.get('http://localhost:5000/author/' + author);
-        console.log("Books retrieved successfully by author:", response.data);
-        return response.data;
-    } catch (error) {
-        // Proper HTTP error handling
-        console.error("Error fetching books by author:", error);
-    }
-}
-
-/**
- * Task 14: Write a code to get the book details based on title using Promise callbacks or async/await with Axios.
- * This function sends an Axios request to retrieve book details by title.
- * Validates the promise response and logs the title retrieval.
- */
-async function getBookByTitleAxios(title) {
-    try {
-        // Fetch book details for the given title
-        let response = await axios.get('http://localhost:5000/title/' + title);
-        console.log("Books retrieved successfully by title:", response.data);
-        return response.data;
-    } catch (error) {
-        // Handle potential errors
-        console.error("Error fetching books by title:", error);
-    }
-}
+// ==========================================
+// Task 14: Get book details based on title using Axios
+// ==========================================
+const getBookByTitle = async (title) => {
+  try {
+    const response = await axios.get('http://localhost:5000/title/' + title);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};

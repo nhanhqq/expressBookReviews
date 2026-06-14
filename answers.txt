@@ -50,7 +50,7 @@ $ curl -s -X GET http://localhost:5000/title/Fairy%20tales
 }
 
 Question 6:
-$ curl -s -X GET http://localhost:5000/review/1
+$ curl http://localhost:5000/review/1
 {}
 
 Question 7:
@@ -62,11 +62,11 @@ $ curl -s -c cookie.txt -X POST -H "Content-Type: application/json" -d '{"userna
 {"message":"Login successful!"}
 
 Question 9:
-$ curl -s -b cookie.txt -X PUT -H "Content-Type: application/json" -d '{"review":"GreatBook"}' http://localhost:5000/review/1
+$ curl -X PUT "http://localhost:5000/review/1?review=GreatBook"
 The review for the book with ISBN 1 has been added/updated.
 
 Question 10:
-$ curl -s -b cookie.txt -X DELETE http://localhost:5000/review/1
+$ curl -X DELETE "http://localhost:5000/review/1"
 Review for ISBN 1 deleted
 
 Question 11:
