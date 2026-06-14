@@ -50,7 +50,7 @@ $ curl -s -X GET http://localhost:5000/title/Fairy%20tales
 }
 
 Question 6:
-$ curl -s -X GET http://localhost:5000/review/1
+$ curl -s http://localhost:5000/review/1
 {}
 
 Question 7:
@@ -59,23 +59,15 @@ $ curl -s -X POST -H "Content-Type: application/json" -d "{\"username\":\"testus
 
 Question 8:
 $ curl -s -c cookie.txt -X POST -H "Content-Type: application/json" -d "{\"username\":\"testuser\",\"password\":\"testpassword\"}" http://localhost:5000/customer/login
-{"message": "Customer successfully logged in"}
+{"message":"Login successful!"}
 
 Question 9:
-$ curl -s -b cookie.txt -X PUT -H "Content-Type: application/json" -d "{\"review\":\"GreatBook\"}" http://localhost:5000/customer/auth/review/1
-{
-    "message": "The review for the book with ISBN 1 has been added/updated.",
-    "reviews": {
-        "testuser": "GreatBook"
-    }
-}
+$ curl -s -b cookie.txt -X PUT -d "review=GreatBook" http://localhost:5000/review/1
+The review for the book with ISBN 1 has been added/updated.
 
 Question 10:
-$ curl -s -b cookie.txt -X DELETE http://localhost:5000/customer/auth/review/1
-{
-    "message": "Reviews for the ISBN 1 posted by the user testuser deleted.",
-    "reviews": {}
-}
+$ curl -s -b cookie.txt -X DELETE http://localhost:5000/review/1
+Review for ISBN 1 deleted
 
 Question 11:
 https://github.com/nhanhqq/expressBookReviews/blob/main/final_project/router/general.js
